@@ -12,6 +12,9 @@ on:
         required: true
         default: 'https://github.com/momo54181/action_build_twrp_device_tree/raw/main/recovery.img'
 
+permissions:
+  contents: write
+
 jobs:
   generate-device-tree:
     if: github.event.repository.owner.id == github.event.sender.id
@@ -55,7 +58,7 @@ jobs:
         cd ..
         
     - name: Create release with device tree
-      uses: softprops/action-gh-release@v1
+      uses: softprops/action-gh-release@v2
       with:
         files: DeviceTree_${{ github.run_number }}.zip
         name: TWRP_Device_Tree_${{ github.run_number }}
